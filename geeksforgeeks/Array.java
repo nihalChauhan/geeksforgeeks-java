@@ -38,7 +38,7 @@ public class Array {
         System.out.println("3. Odd Occurences" );
         System.out.println("4. Largest Sum Sub-Sequence" );
         System.out.println("5. Pivoted Binary Search" );
-        System.out.println("6. Dual Array Median" );        
+        System.out.println("6. Dual Array Median" );                
 
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())
@@ -48,7 +48,7 @@ public class Array {
                     break;
             case 2 :majorElement();
                     break;
-            case 3 :oddOccurence();
+            case 3 :System.out.print("Odd Element : " + oddOccurence());
                     break;
             case 4 :maxContiSub();
                     break;
@@ -58,6 +58,9 @@ public class Array {
                         System.out.println("Fount at : " + x);
                     else
                         System.out.println("Not found");
+                    break;
+            case 6 :System.out.println("Enter size of second Array : ");
+                    System.out.println("Median of two arrays : " + dualArrMedian(sc.nextInt()));
                     break;
             default:System.out.println("Invalid Entry : ");
         }        
@@ -196,7 +199,33 @@ public class Array {
         return pivotBinSearch(l, m-1, k);
     }
     
-    private int dualArrMedian(int[] b){
+    private int dualArrMedian(int n2){
+        int[] b = new int[n2];
+        int i, j, k;
+        int m = (n + n2 - 1)/2;
+        System.out.println("Enter Elements : ");
+        for(i=0; i<n2; i++)
+            b[i] = sc.nextInt();
+        i = j = 0;
+        int current;
+        k = -1;
+        while(i<n && j<n2){
+            if(a[i] < b[j]){
+                current = a[i];
+                i++;
+            }
+            else{
+                current = b[j];
+                j++;
+            }
+            k++;
+            if(k == m)
+                return  current;
+        }
+        if(i<n)
+            return a[m-j];
+        if(j<n2)
+            return a[m-i];
         return 0;
     }
 }
