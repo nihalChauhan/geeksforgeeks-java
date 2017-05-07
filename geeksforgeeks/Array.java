@@ -40,7 +40,7 @@ public class Array {
         System.out.println("5. Pivoted Binary Search" );
         System.out.println("6. Dual Array Median" );                
         System.out.println("7. Left Offset juggling Rotaion" );                
-
+        System.out.println("8. Left Offset Block Swap Rotaion" );                
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())
         {
@@ -65,6 +65,10 @@ public class Array {
                     break;
             case 7 :System.out.println("Enter Left Offset : ");
                     juggleRotate(sc.nextInt());
+                    break;
+            case 8 :System.out.println("Enter Left Offset : ");
+                    if(!blockSwapRotate(sc.nextInt()))
+                        getArray(a);
                     break;
             default:System.out.println("Invalid Entry : ");
         }        
@@ -266,4 +270,34 @@ public class Array {
             return gcd(b, a % b);
     }
     
+    private boolean blockSwapRotate(int off){
+        retemp();
+        int i, j;
+        if(off == 0 || off == n) return Boolean.FALSE;
+        
+        i=off;
+        j=n-off;
+        while(i != j){
+            if(i < j){
+                swap(off-1, off+j-i, i);
+                j = j - i; 
+            }
+            else{
+                swap(off-i, off, j);
+                i = i - j;
+            }
+        }
+        swap(off-i, off, i);
+        getArray(t);
+        return Boolean.TRUE;
+    }
+    
+    private void swap(int f, int s, int off){
+        int temp;
+        for(int i=0; i<off; i++){
+            temp = t[f+i];
+            t[f+i] = t[s+i];
+            t[s+i] = temp;
+        }
+    }
 }
