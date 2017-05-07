@@ -9,7 +9,6 @@ public class GeeksForGeeks {
         Array a = new Array(sc.nextInt());
         
         a.setArray();
-        a.getArray();
         a.menu();
     }   
 }

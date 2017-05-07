@@ -25,10 +25,10 @@ public class Array {
         System.arraycopy(t, 0, a, 0, n);
     }
     
-    public void getArray() {
+    public void getArray(int[] p) {
         System.out.print("Array : ");
         for(int i=0; i<n; i++)
-            System.out.print(a[i] + " ");
+            System.out.print(p[i] + " ");
     }
     
     public void menu(){
@@ -39,6 +39,7 @@ public class Array {
         System.out.println("4. Largest Sum Sub-Sequence" );
         System.out.println("5. Pivoted Binary Search" );
         System.out.println("6. Dual Array Median" );                
+        System.out.println("7. Left Offset juggling Rotaion" );                
 
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())
@@ -61,6 +62,9 @@ public class Array {
                     break;
             case 6 :System.out.println("Enter size of second Array : ");
                     System.out.println("Median of two arrays : " + dualArrMedian(sc.nextInt()));
+                    break;
+            case 7 :System.out.println("Enter Left Offset : ");
+                    juggleRotate(sc.nextInt());
                     break;
             default:System.out.println("Invalid Entry : ");
         }        
@@ -228,4 +232,38 @@ public class Array {
             return a[m-i];
         return 0;
     }
+    
+    private void juggleRotate(int off) 
+    {
+        retemp();
+        int i, j, k, temp;
+        for (i = 0; i<gcd(off, n); i++) 
+        {
+            
+            temp = t[i];
+            j = i;
+            while (Boolean.TRUE) 
+            {
+                k = j + off;
+                if (k >= n) 
+                    k = k - n;
+                if (k == i) 
+                    break;
+                t[j] = t[k];
+                j = k;
+            }
+            t[j] = temp;
+        }
+        System.out.println("Temproray Array after shift : ");
+        getArray(this.t);
+    }
+    
+    private int gcd(int a, int b) 
+    {
+        if (b == 0)
+            return a;
+        else
+            return gcd(b, a % b);
+    }
+    
 }
