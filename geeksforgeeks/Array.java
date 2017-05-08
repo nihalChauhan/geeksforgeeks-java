@@ -43,6 +43,8 @@ public class Array {
         System.out.println("8. Left Offset Block Swap Rotaion" );                
         System.out.println("9. Left Offset Reverse Repeat Rotaion" );                
         System.out.println("10. Non Adjacent Maximum Sum" );                
+        System.out.println("11. Leader Elements in Array" );
+        System.out.println("12. Leader Elements in Array" );
         
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())
@@ -77,6 +79,10 @@ public class Array {
                     reverseRotate(sc.nextInt());
                     break;
             case 10:System.out.println("Non Adjacent Max Sum : " + noAdjMaxSum());
+                    break;
+            case 11:System.out.print("Leader Elements : [ "); 
+                    leaders();
+                    System.out.println("]");
                     break;
             default:System.out.println("Invalid Entry : ");
         }        
@@ -116,13 +122,14 @@ public class Array {
         }
     }
     
+    //https://goo.gl/vj6fbD
     private void sumPair(int sum){
         retemp();
         quickSort(this.t,0,n-1);
         int l, r, k;
         r = n-1;
         l = k = 0;
-        while(k!=1 && l<=r){
+        while(k!=1 && l<r){
             if((t[l] + t[r]) == sum) k=1;
             else if((t[l] + t[r]) > sum) r--;
             else if((t[l] + t[r]) < sum) l++;
@@ -132,6 +139,19 @@ public class Array {
            System.out.println(" found : [ " + t[l] + ", " + t[r] + " ]");
         else
            System.out.println(" not found");  
+    }
+    
+    //http://www.geeksforgeeks.org/majority-element/
+    private void majorElement(){
+        int c = getCandidate();
+        int count = 0;
+        for(int i=1; i<n; i++)
+            if(a[i] == c)count++;
+        
+        if(count >= (n/2))
+            System.out.println("Majority Element : " + c);
+        else
+            System.out.println("Majority Element not found.");
     }
     
     private int getCandidate(){
@@ -151,18 +171,7 @@ public class Array {
         return a[mi];
     }
     
-    private void majorElement(){
-        int c = getCandidate();
-        int count = 0;
-        for(int i=1; i<n; i++)
-            if(a[i] == c)count++;
-        
-        if(count >= (n/2))
-            System.out.println("Majority Element : " + c);
-        else
-            System.out.println("Majority Element not found.");
-    }
-    
+    //http://www.geeksforgeeks.org/find-the-number-occurring-odd-number-of-times/
     private int oddOccurence(){
         int res = 0;
         for(int i=0; i<n; i++)
@@ -170,6 +179,7 @@ public class Array {
         return res;
     }
     
+    //http://www.geeksforgeeks.org/largest-sum-contiguous-subarray/
     private void maxContiSub(){
         int max_so_far, max_end_here;
         int start, end, s, i;
@@ -195,6 +205,7 @@ public class Array {
         System.out.println("]");
     }
     
+    //http://www.geeksforgeeks.org/search-an-element-in-a-sorted-and-pivoted-array/
     private int pivotBinSearch(int l, int h, int k){
         if (l > h) return -1;
         
@@ -215,6 +226,7 @@ public class Array {
         return pivotBinSearch(l, m-1, k);
     }
     
+    //http://www.geeksforgeeks.org/median-of-two-sorted-arrays/
     private int dualArrMedian(int n2){
         int[] b = new int[n2];
         int i, j, k;
@@ -245,6 +257,7 @@ public class Array {
         return 0;
     }
     
+    //http://www.geeksforgeeks.org/array-rotation/
     private void juggleRotate(int off) 
     {
         retemp();
@@ -278,6 +291,7 @@ public class Array {
             return gcd(b, a % b);
     }
     
+    //http://geeksforgeeks.org/?p=2878
     private boolean blockSwapRotate(int off){
         retemp();
         int i, j;
@@ -309,6 +323,7 @@ public class Array {
         }
     }
     
+    //http://www.geeksforgeeks.org/program-for-array-rotation-continued-reversal-algorithm/
     private void reverseRotate(int off){
         retemp();
         reverse(0, off-1);
@@ -327,6 +342,7 @@ public class Array {
         }
     }
     
+    //http://www.geeksforgeeks.org/maximum-sum-such-that-no-two-elements-are-adjacent/
     private int noAdjMaxSum(){
         int i;
         int max1, max_here1, max2, max_here2;
@@ -350,5 +366,17 @@ public class Array {
             }
         }
         return (max1 > max2 ? max1 : max2);
+    }
+    
+    //http://www.geeksforgeeks.org/leaders-in-an-array/
+    private void leaders(){
+        int max;
+        max = Integer.MIN_VALUE;
+        for(int i=n-1; i>=0; i--){
+            if(max < a[i]){
+                System.out.print(a[i] + " ");
+                max = a[i];
+            }
+        }
     }
 }
