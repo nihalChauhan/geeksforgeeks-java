@@ -39,8 +39,11 @@ public class Array {
         System.out.println("4. Largest Sum Sub-Sequence" );
         System.out.println("5. Pivoted Binary Search" );
         System.out.println("6. Dual Array Median" );                
-        System.out.println("7. Left Offset juggling Rotaion" );                
+        System.out.println("7. Left Offset Juggling Rotaion" );                
         System.out.println("8. Left Offset Block Swap Rotaion" );                
+        System.out.println("9. Left Offset Reverse Repeat Rotaion" );                
+        System.out.println("10. Non Adjacent Maximum Sum" );                
+        
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())
         {
@@ -69,6 +72,11 @@ public class Array {
             case 8 :System.out.println("Enter Left Offset : ");
                     if(!blockSwapRotate(sc.nextInt()))
                         getArray(a);
+                    break;
+            case 9 :System.out.println("Enter Left Offset : ");
+                    reverseRotate(sc.nextInt());
+                    break;
+            case 10:System.out.println("Non Adjacent Max Sum : " + noAdjMaxSum());
                     break;
             default:System.out.println("Invalid Entry : ");
         }        
@@ -299,5 +307,48 @@ public class Array {
             t[f+i] = t[s+i];
             t[s+i] = temp;
         }
+    }
+    
+    private void reverseRotate(int off){
+        retemp();
+        reverse(0, off-1);
+        reverse(off, n-1);
+        reverse(0, n-1);     
+        getArray(t);
+    }
+    
+    private void reverse(int s, int e){
+        int temp;
+        while(s < e){
+            temp = t[s];
+            t[s] = t[e];
+            t[e] = temp;
+            s++; e--;
+        }
+    }
+    
+    private int noAdjMaxSum(){
+        int i;
+        int max1, max_here1, max2, max_here2;
+        max1 = max_here1 = max2 = max_here2 = 0;
+        for(i=0; i<n; i=i+2){
+            if(a[i] > 0){
+                max_here1 = max_here1 + a[i];
+                max1 = max1 + a[i];
+            }
+            else if(max_here1 + a[i] < 0){
+                max_here1 = 0;
+            }
+        }
+        for(i=1; i<n; i=i+2){
+            if(a[i] > 0){
+                max_here2 = max_here2 + a[i];
+                max2 = max2 + a[i];
+            }
+            else if(max_here2 + a[i] < 0){
+                max_here2 = 0;
+            }
+        }
+        return (max1 > max2 ? max1 : max2);
     }
 }
