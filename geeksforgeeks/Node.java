@@ -9,10 +9,15 @@ public class Node {
     public Node(int key, int aux){
         this.key = key;
         this.aux = aux;
+        this.leftChild = null;
+        this.rightChild = null;
     }
     
-    public Node(int key){
-        this.key = key;
-        this.aux = 0;
+    public void showNode(){
+        if(aux != Integer.MIN_VALUE){
+            System.out.print("Key : " + key + " Aux : " + aux);
+        }
+        else
+        System.out.print("Key : " + key);
     }
 }
