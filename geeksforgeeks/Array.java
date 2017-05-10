@@ -44,7 +44,6 @@ public class Array {
         System.out.println("9. Left Offset Reverse Repeat Rotaion" );                
         System.out.println("10. Non Adjacent Maximum Sum" );                
         System.out.println("11. Leader Elements in Array" );
-        System.out.println("12. Leader Elements in Array" );
         
         System.out.print("Enter Choice : ");
         switch(sc.nextInt())

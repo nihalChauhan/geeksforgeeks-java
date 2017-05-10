@@ -4,6 +4,9 @@ import java.util.LinkedList;
 
 abstract public class BinTree {
     Node root;
+    public BinTree(){
+        root = null;
+    }
     
     abstract public void addNode(int k, int a);
     abstract public void addNode(int k);
@@ -12,9 +15,9 @@ abstract public class BinTree {
     
     public void inOrderTraverse(Node focus){
         if(focus != null){
-            preOrderTraverse(focus.leftChild);
+            inOrderTraverse(focus.leftChild);
             focus.showNode();
-            preOrderTraverse(focus.rightChild);
+            inOrderTraverse(focus.rightChild);
         }
     }
     
@@ -28,8 +31,8 @@ abstract public class BinTree {
     
     public void postOrderTraverse(Node focus){
         if(focus != null){
-            preOrderTraverse(focus.leftChild);
-            preOrderTraverse(focus.rightChild);
+            postOrderTraverse(focus.leftChild);
+            postOrderTraverse(focus.rightChild);
             focus.showNode();
         }
     }

@@ -15,9 +15,9 @@ public class Node {
     
     public void showNode(){
         if(aux != Integer.MIN_VALUE){
-            System.out.print("Key : " + key + " Aux : " + aux);
+            System.out.println("Key : " + key + " Aux : " + aux);
         }
         else
-        System.out.print("Key : " + key);
+        System.out.println("Key : " + key);
     }
 }
