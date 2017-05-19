@@ -49,4 +49,20 @@ abstract public class BinTree {
                 queue.add(temp.rightChild);
         }
     }
+    
+    public void inOrderTraverse(){
+        preOrderTraverse(this.root);
+    }
+    
+    public void preOrderTraverse(){
+        preOrderTraverse(this.root);
+    }
+    
+    public void postOrderTraverse(){
+        preOrderTraverse(this.root);
+    }
+    
+    public void layerTraverse(){
+        preOrderTraverse(this.root);
+    }
 }
